@@ -1,0 +1,4 @@
+#  for logs, source this file
+
+export TF_LOG=TRACE
+export TF_LOG_PATH=TFlag.log

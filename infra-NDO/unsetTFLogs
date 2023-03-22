@@ -1,0 +1,4 @@
+#  for stopping logs, source this file
+
+unset TF_LOG
+unset TF_LOG_PATH
