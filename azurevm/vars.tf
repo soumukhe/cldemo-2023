@@ -43,6 +43,9 @@ variable "username" {
 
 }
 
+variable "privateIP" {
+  default = "somevalue"
+}
 
 
 # the below variable values should be put in override.tf
@@ -57,3 +60,4 @@ variable "azurestuff" {
   }
 
 }
+

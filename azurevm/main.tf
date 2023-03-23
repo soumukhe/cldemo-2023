@@ -60,7 +60,7 @@ output "NSG_ID" {
 }
 */
 ################################
-
+/*
 
 # Create public IPs
 resource "azurerm_public_ip" "example" {
@@ -73,7 +73,7 @@ resource "azurerm_public_ip" "example" {
     environment = var.pubip_name
   }
 }
-
+*/
 
 # Create network interface
 resource "azurerm_network_interface" "example" {
@@ -84,8 +84,10 @@ resource "azurerm_network_interface" "example" {
   ip_configuration {
     name                          = "internal"
     subnet_id                     = data.azurerm_subnet.example.id
-    private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.example.id
+    #private_ip_address_allocation = "Dynamic"
+    private_ip_address_allocation = "static"
+    private_ip_address = var.privateIP
+    #public_ip_address_id          = azurerm_public_ip.example.id
   }
 
   tags = {

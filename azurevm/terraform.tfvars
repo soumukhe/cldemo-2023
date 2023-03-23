@@ -7,4 +7,5 @@ vm_name    = "cldemo-az-vm1"
 image_name = "cldemo-azure-image.autoClick.v1"
 image_rg   = "images"
 username   = "azureuser"
+privateIP  = "10.70.1.100"
 
