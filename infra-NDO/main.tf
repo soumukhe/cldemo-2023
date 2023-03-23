@@ -350,7 +350,7 @@ resource "mso_schema_template_anp" "anp2" {
 data "mso_schema_site_vrf" "v1" {
   site_id   = data.mso_site.aws_site.id
   schema_id = mso_schema.schema1.id
-  vrf_name  = mso_schema_template_vrf.vrf1.name
+  vrf_name  = mso_schema_site_vrf_region.aws_region.vrf_name
 }
 
 output "vrf_info" {
@@ -370,7 +370,7 @@ resource "mso_schema_template_anp_epg" "t2anp_epg" {
   template_name     = tolist(mso_schema.schema1.template)[1].name
   anp_name          = mso_schema_template_anp.anp2.name
   name              = var.t2epg_name
-  vrf_name          = mso_schema_template_vrf.vrf1.name
+  vrf_name          = mso_schema_site_vrf_region.aws_region.vrf_name
   vrf_schema_id     = mso_schema.schema1.id
   vrf_template_name = tolist(mso_schema.schema1.template)[0].name
   display_name      = var.t2epg_name
@@ -417,7 +417,7 @@ resource "mso_schema_template_external_epg" "externalepg" {
   external_epg_name = var.t2ext_epg
   external_epg_type = "cloud"
   display_name      = var.t2ext_epg
-  vrf_name          = mso_schema_template_vrf.vrf1.name
+  vrf_name          = mso_schema_template_anp_epg.t2anp_epg.vrf_name
   vrf_schema_id     = mso_schema.schema1.id
   vrf_template_name = tolist(mso_schema.schema1.template)[0].name
   anp_name          = mso_schema_template_anp.anp2.name

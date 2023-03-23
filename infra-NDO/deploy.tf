@@ -26,7 +26,7 @@ resource "mso_schema_template_deploy_ndo" "template1_deployer" {
     mso_schema_template_anp_epg_contract.c1_epg_provider
 
   ]
-  re_deploy = true
+  re_deploy = false
 }
 
 
@@ -48,6 +48,6 @@ resource "mso_schema_template_deploy_ndo" "template2_deployer" {
     mso_schema_template_external_epg_contract.extEPg-c1
 
   ]
-  re_deploy = true
+  re_deploy = false
 }
 
