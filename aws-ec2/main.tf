@@ -80,7 +80,7 @@ resource "aws_key_pair" "loginkey" {
   public_key = file("~/.ssh/id_rsa.pub")
 }
 
-## spin up the aws instances.  Note we are using count.index to spin up multiple ec2s as required
+## spin up the aws instances.
 /*
 data "aws_ami" "std_ami" {
   most_recent = true
@@ -94,6 +94,34 @@ data "aws_ami" "std_ami" {
 */
 
 
+# trying with static IP
+
+resource "aws_network_interface" "foo" {
+  subnet_id = local.myec2subnet
+  private_ips = ["10.60.1.100"]
+}
+
+
+resource "aws_instance" "aws-backend-ec2" {
+  #ami                         = data.aws_ami.std_ami.id
+  ami                         = var.ami_id
+  instance_type               = var.instance_type
+  #subnet_id                   = local.myec2subnet
+  #associate_public_ip_address = false
+  key_name                    = aws_key_pair.loginkey.key_name
+  network_interface {
+  network_interface_id = aws_network_interface.foo.id
+  device_index = 0
+  }
+  tags = {
+    Name = "ec2-0-backend" 
+  }
+}
+
+
+
+/*
+# This is with dhcp ip
 resource "aws_instance" "aws-backend-ec2" {
   #ami                         = data.aws_ami.std_ami.id
   ami                         = var.ami_id
@@ -101,11 +129,12 @@ resource "aws_instance" "aws-backend-ec2" {
   subnet_id                   = local.myec2subnet
   associate_public_ip_address = true
   key_name                    = aws_key_pair.loginkey.key_name
-  count                       = var.num_inst
   tags = {
-    Name = "ec2-${count.index}-backend" # first instance will be ec2-0, then ec2-1 etc, etc
+    Name = "ec2-0-backend" # first instance will be ec2-0, then ec2-1 etc, etc
   }
 }
+
+
 
 ## Show Private IPs
 output "privateIP" {
@@ -116,6 +145,11 @@ output "privateIP" {
   }
 }
 
+*/
+
+output "privateIP" {
+  value =  aws_network_interface.foo.private_ips
+}
 
 
 

@@ -48,3 +48,7 @@ variable "awsstuff" {
   }
 }
 
+variable "ec2-privateIP" {
+  type    = string
+  default = "some value"
+}
