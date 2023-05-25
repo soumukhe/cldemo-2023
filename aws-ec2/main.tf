@@ -96,9 +96,23 @@ data "aws_ami" "std_ami" {
 
 # trying with static IP
 
+
+
+data "aws_security_groups" "test" {
+  tags = {
+    Name   = var.sgName
+  }
+
+}
+
+output "sgid" {
+  value = data.aws_security_groups.test.ids
+}
+
 resource "aws_network_interface" "foo" {
   subnet_id = local.myec2subnet
-  private_ips = ["10.60.1.100"]
+  private_ips =var.ec2-privateIP
+  security_groups = data.aws_security_groups.test.ids
 }
 
 

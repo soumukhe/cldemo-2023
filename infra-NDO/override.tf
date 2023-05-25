@@ -2,9 +2,9 @@
 variable "creds" {
   type = map(any)
   default = {
-    username = "00000000"
-    password = "00000000"
-    url      = "https://00000000/"
+    username = "admin"
+    password = ""
+    url      = "https://ipOfNDO/"
     domain   = "local" #  if you don't have remote authentication setup, just put the value  local
   }
 }
@@ -17,7 +17,7 @@ variable "awsstuff" {
     aws_secret_key    = string
   })
   default = {
-    aws_account_id    = "00000000"
+    aws_account_id    = ""
     aws_access_key_id = "00000000000000000000"
     aws_secret_key    = "0000000000000000000000000000000000000000"
   }
@@ -28,6 +28,6 @@ variable "azurestuff" {
     azure_subscription_id = string
   })
   default = {
-    azure_subscription_id = "00000000"
+    azure_subscription_id = ""
   }
 }

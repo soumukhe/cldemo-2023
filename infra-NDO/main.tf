@@ -105,8 +105,11 @@ resource "mso_schema_site" "aws_site-t2" {
 resource "mso_schema_template_vrf" "vrf1" {
   schema_id    = mso_schema.schema1.id
   template     = mso_schema_site.onprem_site.template_name
-  name         = try(var.vrf_name)
-  display_name = try(var.vrf_name)
+  #name         = try(var.vrf_name)
+  #display_name = try(var.vrf_name)
+  name         = var.vrf_name
+  display_name = var.vrf_name
+  ip_data_plane_learning = "enabled"
 }
 
 
@@ -275,14 +278,15 @@ resource "mso_schema_site_anp_epg_selector" "epgSel1" {
 # troubleshooting for Aki -- TF_LOG env
 
 resource "mso_schema_site_anp_epg_domain" "site_anp_epg_domain" {
-  schema_id                = mso_schema.schema1.id
-  template_name            = mso_schema_site_anp_epg_selector.epgSel1.template_name
-  site_id                  = data.mso_site.onprem_site.id
-  anp_name                 = mso_schema_template_anp.anp1.name
-  epg_name                 = mso_schema_template_anp_epg.anp_epg.name
-  domain_type              = "vmmDomain"
-  vmm_domain_type          = "VMware"
-  domain_name              = "VMM2"
+  schema_id     = mso_schema.schema1.id
+  template_name = mso_schema_site_anp_epg_selector.epgSel1.template_name
+  site_id       = data.mso_site.onprem_site.id
+  anp_name      = mso_schema_template_anp.anp1.name
+  epg_name      = mso_schema_template_anp_epg.anp_epg.name
+  #domain_type              = "vmmDomain"
+  #vmm_domain_type          = "VMware"
+  #domain_name              = "VMM2"
+  domain_dn                = "uni/vmmp-VMware/dom-VMM2"
   deploy_immediacy         = "lazy"
   resolution_immediacy     = "lazy"
   vlan_encap_mode          = "dynamic"
@@ -397,7 +401,7 @@ resource "mso_schema_site_anp_epg_selector" "t2-epgSel1" {
 resource "mso_schema_site_anp_epg_selector" "t2-epgSel2" {
   schema_id     = mso_schema_site_anp_epg_selector.t2-epgSel1.schema_id
   site_id       = mso_schema_site_anp_epg_selector.t2-epgSel1.site_id
-  template_name = mso_schema_site_anp_epg_selector.t2-epgSel1.template_name 
+  template_name = mso_schema_site_anp_epg_selector.t2-epgSel1.template_name
   anp_name      = mso_schema_site_anp_epg_selector.t2-epgSel1.anp_name
   epg_name      = mso_schema_site_anp_epg_selector.t2-epgSel1.epg_name
   name          = var.t2epg_sel2

@@ -8,9 +8,9 @@ onprem_site_name = "ACI"
 # Tenant
 
 tenant = {
-  tenant_name  = "cldemo"
-  display_name = "cldemo"
-  description  = "cldemo"
+  tenant_name  = "cldemo2023"
+  display_name = "cldemo2023"
+  description  = "cldemo2023"
 }
 
 # Templates/Schema
@@ -22,7 +22,7 @@ template1 = {
 
 
 
-schema_name = "cldemo"
+schema_name = "cldemo2023"
 
 aws_region_name = "us-east-1"
 aws_zone1       = "us-east-1a"
@@ -46,20 +46,20 @@ azure_user_subnets = {
   }
 }
 
-vrf_name  = "vrf-cldemo1"
-bd_name   = "bd-cldemo1"
+vrf_name  = "vrf-cldemo2023"
+bd_name   = "bd-cldemo2023"
 bd_subnet = "10.40.1.1/24"
 
-anp_name = "ap-cldemo1"
-epg_name = "epg-cldemo1"
+anp_name = "ap-cldemo2023"
+epg_name = "epg-cldemo2023"
 
-filter_name       = "AnyFilter1"
+filter_name       = "AnyFilter-cldemo2023"
 filter_entry_name = "any"
 
 contract_name = "c-alb_targetGroup"
 
 
-# note below template2 is named "taws-only" so that the list contains this as element1.  element0 will be template1 with value of "cldemo"
+# note below template2 is named "taws-only" so that the list contains this as element1.  element0 will be template1 with value of "cldemo2023"
 template2 = {
   name         = "taws-only"
   display_name = "taws-only"

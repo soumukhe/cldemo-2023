@@ -21,7 +21,7 @@ alb_name         = "cldemo-alb1"
 targetGroup_name = "cldemo-alb1-tg"
 
 ####  Below are IPs for alb target-group registeration
-aws_ec2_ip   = "10.60.1.216"
-azure_vm_ip  = "10.70.1.4"
+aws_ec2_ip   = "10.60.1.100"
+azure_vm_ip  = "10.70.1.100"
 onprem_vm_ip = "10.40.1.100"
 

@@ -49,6 +49,11 @@ variable "awsstuff" {
 }
 
 variable "ec2-privateIP" {
-  type    = string
-  default = "some value"
+  type    = list
+  default = ["some value"]
+}
+
+variable "sgName" {
+  type = string
+  default =" some value"
 }
